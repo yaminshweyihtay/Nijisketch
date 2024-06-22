@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - Restaurant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Make a Reservation</h1>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('menu') }}">Menu</a>
+        <a href="{{ url_for('reservations') }}">Reservations</a>
+    </nav>
+    <form method="post">
+        <label for="guest_name">Name:</label><br>
+        <input type="text" id="guest_name" name="guest_name"><br>
+        <label for="guest_phone">Phone:</label><br>
+        <input type="text" id="guest_phone" name="guest_phone"><br>
+        <label for="guest_email">Email:</label><br>
+        <input type="email" id="guest_email" name="guest_email"><br>
+        <label for="reservation_date">Date:</label><br>
+        <input type="date" id="reservation_date" name="reservation_date"><br>
+        <label for="reservation_time">Time:</label><br>
+        <input type="time" id="reservation_time" name="reservation_time"><br>
+        <label for="num_guests">Number of Guests:</label><br>
+        <input type="number" id="num_guests" name="num_guests"><br>
+        <label for="special_requests">Special Requests:</label><br>
+        <textarea id="special_requests" name="special_requests"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+    <h2>Existing Reservations</h2>
+    <ul>
+        {% for reservation in reservations %}
+            <li>{{ reservation[1] }} - {{ reservation[4] }} at {{ reservation[5] }} for {{ reservation[6] }} guests ({{ reservation[7] }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
